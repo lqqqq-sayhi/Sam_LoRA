@@ -1,0 +1,11 @@
+DATASET:
+  TRAIN_PATH: "/mnt/hdd2/task2/sam_lora/train"
+  TEST_PATH: "/mnt/hdd2/task2/sam_lora/test"
+
+SAM:
+  CHECKPOINT: "/mnt/hdd2/task2/sam/sam_vit_b_01ec64.pth"
+  RANK: 2
+TRAIN:
+  BATCH_SIZE: 2
+  NUM_EPOCHS: 100
+  LR: 0.0001

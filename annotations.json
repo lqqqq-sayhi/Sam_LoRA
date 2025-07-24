@@ -1,18 +1,107 @@
 {
-"train": 
-{
-"ring1.jpg": {"mask_path":"./dataset/train/masks/ring1.jpg", "bbox": [27, 25, 172, 209]},
-"ring2.jpg": {"mask_path":"./dataset/train/masks/ring2.jpg", "bbox": [569, 239, 1286, 944]},
-"ring3.jpg": {"mask_path":"./dataset/train/masks/ring3.jpg", "bbox": [135, 68, 466, 415]},
-"ring4.jpg": {"mask_path":"./dataset/train/masks/ring4.jpg", "bbox": [133, 234, 1085, 718]},
-"ring5.jpg": {"mask_path":"./dataset/train/masks/ring5.jpg", "bbox": [163, 197, 477, 597]},
-"ring6.jpg": {"mask_path":"./dataset/train/masks/ring6.jpg", "bbox": [12, 30, 438, 288]},
-"ring7.jpg": {"mask_path":"./dataset/train/masks/ring7.jpg", "bbox": [4, 11, 789, 438]},
-"ring8.jpg": {"mask_path":"./dataset/train/masks/ring8.jpg", "bbox": [185, 83, 621, 639]}
+    "train": {
+    
+        "10_C2-00000.png": {
+      "mask_path": "/mnt/hdd2/task2/ssam/binary_annotations/10/C2-00000_class28.png",
+      "bbox": [
+        723,
+        0,
+        1084,
+        298
+      ]
+    },
+    "10_C2-00476.png": {
+      "mask_path": "/mnt/hdd2/task2/ssam/binary_annotations/10/C2-00476_class28.png",
+      "bbox": [
+        705,
+        0,
+        1014,
+        301
+      ]
+    },
+    "10_C2-00951.png": {
+      "mask_path": "/mnt/hdd2/task2/ssam/binary_annotations/10/C2-00951_class28.png",
+      "bbox": [
+        706,
+        0,
+        1019,
+        321
+      ]
+    },
+    "10_C2-01427.png": {
+      "mask_path": "/mnt/hdd2/task2/ssam/binary_annotations/10/C2-01427_class28.png",
+      "bbox": [
+        709,
+        0,
+        1045,
+        297
+      ]
+    },
+    "10_C2-01902.png": {
+      "mask_path": "/mnt/hdd2/task2/ssam/binary_annotations/10/C2-01902_class28.png",
+      "bbox": [
+        708,
+        0,
+        1027,
+        318
+      ]
+    },
+    "10_C2-01964.png": {
+      "mask_path": "/mnt/hdd2/task2/ssam/binary_annotations/10/C2-01964_class28.png",
+      "bbox": [
+        655,
+        0,
+        1028,
+        318
+      ]
+    },
+    "10_C2-02025.png": {
+      "mask_path": "/mnt/hdd2/task2/ssam/binary_annotations/10/C2-02025_class28.png",
+      "bbox": [
+        668,
+        0,
+        1055,
+        340
+      ]
+    },
+    "10_C2-02087.png": {
+      "mask_path": "/mnt/hdd2/task2/ssam/binary_annotations/10/C2-02087_class28.png",
+      "bbox": [
+        674,
+        0,
+        1025,
+        300
+      ]
+    }
+    
 },
-"test": 
-{"ring_test_1.jpg" : {"mask_path":"./dataset/test/masks/ring_test_1.jpg", "bbox": [74, 351, 936, 649]},
-"ring_test_2.jpg" : {"mask_path":"./dataset/test/masks/ring_test_2.jpg", "bbox": [138, 196, 508, 610]}
-}
-
+    "test": {
+    "19_C1-00000.png": {
+      "mask_path": "/mnt/hdd2/task2/ssam/binary_annotations/19/C1-00000_class28.png",
+      "bbox": [
+        608,
+        875,
+        1122,
+        1003
+      ]
+    },
+    "19_C1-00058.png": {
+      "mask_path": "/mnt/hdd2/task2/ssam/binary_annotations/19/C1-00058_class28.png",
+      "bbox": [
+        609,
+        870,
+        1128,
+        1003
+      ]
+    },
+    "19_C1-00116.png": {
+      "mask_path": "/mnt/hdd2/task2/ssam/binary_annotations/19/C1-00116_class28.png",
+      "bbox": [
+        608,
+        865,
+        1125,
+        1003
+      ]
+    }
+    }
 }

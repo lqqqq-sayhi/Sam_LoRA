@@ -1,3 +1,4 @@
+import os
 import torch
 import monai
 from tqdm import tqdm
@@ -20,6 +21,9 @@ import numpy as np
 """
 This file compute the evaluation metric (Dice cross entropy loss) for all trained LoRA SAM with different ranks. This gives the plot that is in ./plots/rank_comparison.jpg
 which compares the performances on test the test set.
+
+CUDA_VISIBLE_DEVICES=? nohup poetry run python inference_eval.py > /home/lq/Projects_qin/surgical_semantic_seg/proposed_algorithm/SAM_LoRA/inf_eval1.log 2>&1 &
+
 """
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -27,10 +31,16 @@ seg_loss = monai.losses.DiceCELoss(sigmoid=True, squared_pred=True, reduction='m
 # Load the config file
 with open("./config.yaml", "r") as ymlfile:
    config_file = yaml.load(ymlfile, Loader=yaml.Loader)
-rank_list = [2, 4, 6, 8, 16, 32, 64, 128, 256, 512]
+rank_list = [2] # [2, 4, 6, 8, 16, 32, 64, 128, 256, 512]
 rank_loss = []
 total_baseline_loss = []
 baseline_loss = 0
+
+safetensors_path = f"/home/lq/Projects_qin/surgical_semantic_seg/benmarking_algorithms/Sam_LoRA/experiment_2/best_model_rank2_7_epoch_in100epochs.safetensors"
+fig_path = f"/home/lq/Projects_qin/surgical_semantic_seg/benmarking_algorithms/Sam_LoRA/experiment_2/plots"
+
+os.makedirs(fig_path, exist_ok=True)
+
 # Load SAM model
 with torch.no_grad():
     sam = build_sam_vit_b(checkpoint=config_file["SAM"]["CHECKPOINT"])
@@ -59,7 +69,7 @@ with torch.no_grad():
         baseline = sam
         #Create SAM LoRA
         sam_lora = LoRA_sam(sam, rank)
-        sam_lora.load_lora_parameters(f"./lora_weights/lora_rank{rank}.safetensors")  
+        sam_lora.load_lora_parameters(safetensors_path)  
         model = sam_lora.sam
         
         # Process the dataset
@@ -97,15 +107,15 @@ width = 0.25  # the width of the bars
 multiplier = 0
 models_results= {"Baseline": baseline_loss,
                  "Rank 2": rank_loss[0], 
-                 "Rank 4": rank_loss[1], 
-                 "Rank 6": rank_loss[2],
-                 "Rank 8": rank_loss[3],
-                 "Rank 16": rank_loss[4],
-                 "Rank 32": rank_loss[5],
-                 "Rank 64": rank_loss[6],
-                 "Rank 128": rank_loss[7],
-                 "Rank 256": rank_loss[8],
-                 "Rank 512": rank_loss[9]
+                #  "Rank 4": rank_loss[1], 
+                #  "Rank 6": rank_loss[2],
+                #  "Rank 8": rank_loss[3],
+                #  "Rank 16": rank_loss[4],
+                #  "Rank 32": rank_loss[5],
+                #  "Rank 64": rank_loss[6],
+                #  "Rank 128": rank_loss[7],
+                #  "Rank 256": rank_loss[8],
+                #  "Rank 512": rank_loss[9]
                  }
 eval_scores_name = ["Rank"]
 x = np.arange(len(eval_scores_name))
@@ -119,9 +129,9 @@ for model_name, score in models_results.items():
 
 # Add some text for labels, title and custom x-axis tick labels, etc.
 ax.set_ylabel('Dice Loss')
-ax.set_title('LoRA trained on 50 epochs - Rank comparison on test set')
+ax.set_title('LoRA (Rank 2) trained on 7 epochs - Rank comparison on test set')
 ax.set_xticks(x + width, eval_scores_name)
 ax.legend(loc=3, ncols=2)
 ax.set_ylim(0, 0.2)
 
-plt.savefig("./plots/rank_comparison.jpg")
+plt.savefig(f"{fig_path}/rank_comparison.jpg")

@@ -1,5 +1,8 @@
 sam_vit_b_01ec64.pth
 
+/dataset
+/plots
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

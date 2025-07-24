@@ -1,10 +1,10 @@
 DATASET:
-  TRAIN_PATH: "./dataset/train"
-  TEST_PATH: "./dataset/test"
+  TRAIN_PATH: "/mnt/hdd2/task2/sam_lora/train"
+  TEST_PATH: "/mnt/hdd2/task2/sam_lora/test"
 
 SAM:
-  CHECKPOINT: "./sam_vit_b_01ec64.pth"
-  RANK: 512
+  CHECKPOINT: "/mnt/hdd2/task2/sam/sam_vit_b_01ec64.pth"
+  RANK: 2
 TRAIN:
-  BATCH_SIZE: 1
-  NUM_EPOCHS: 50
+  BATCH_SIZE: 2
+  NUM_EPOCHS: 100
