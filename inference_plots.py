@@ -30,8 +30,10 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 sam = build_sam_vit_b(checkpoint=sam_checkpoint)
 
 rank = 2
-safetensors_path = f"/home/lq/Projects_qin/surgical_semantic_seg/benmarking_algorithms/Sam_LoRA/experiment_2/best_model_rank2_7_epoch_in100epochs.safetensors"
-fig_path = f"/home/lq/Projects_qin/surgical_semantic_seg/benmarking_algorithms/Sam_LoRA/experiment_2/plots"
+safetensors_path = f"/home/lq/Projects_qin/surgical_semantic_seg/experiments/SAM_LoRA/experiment_2/best_model_rank2_7_epoch_in100epochs.safetensors"
+fig_path = f"/mnt/hdd2/task2/sam_lora/plots"
+if not os.path.exists(fig_path):
+    os.makedirs(fig_path)
 is_baseline = False # Change to True if you want to use the baseline model
 
 if is_baseline:
@@ -57,13 +59,13 @@ def inference_model(image_path, filename, mask_path=None, bbox=None):
     predictor = SamPredictor(model)
     predictor.set_image(np.array(image))
     masks, iou_pred, low_res_iou = predictor.predict(
-        box=np.array(box),
+        box=np.array(bbox),
         multimask_output=False,
     )
 
     if mask_path == None:
         fig, (ax1, ax2) = plt.subplots(1, 2, sharex=True, sharey=True, figsize=(15, 15))
-        draw.rectangle(box, outline ="red")
+        draw.rectangle(bbox, outline ="red")
         ax1.imshow(image)
         ax1.set_title(f"Original image + Bounding box: {filename}")
 
@@ -77,7 +79,7 @@ def inference_model(image_path, filename, mask_path=None, bbox=None):
         
     else:
         fig, (ax1, ax2, ax3) = plt.subplots(1, 3, sharex=True, sharey=True, figsize=(15, 15))
-        draw.rectangle(box, outline ="red", width=10)
+        draw.rectangle(bbox, outline ="red", width=10)
         ax1.imshow(image)
         ax1.set_title(f"Original image + Bounding box: {filename}")
 

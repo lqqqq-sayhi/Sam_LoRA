@@ -1,0 +1,22 @@
+False
+*******load /mnt/hdd2/task2/sam-med2d/sam-med2d_b.pth
+Traceback (most recent call last):
+  File "/home/lq/Projects_qin/surgical_semantic_seg/benmarking_algorithms/SAM-Med2D/train.py", line 309, in <module>
+    main(args)
+  File "/home/lq/Projects_qin/surgical_semantic_seg/benmarking_algorithms/SAM-Med2D/train.py", line 246, in main
+    model = sam_model_registry[args.model_type](args).to(args.device) 
+  File "/home/lq/Projects_qin/run_SSAM/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1369, in to
+    return self._apply(convert)
+  File "/home/lq/Projects_qin/run_SSAM/lib/python3.10/site-packages/torch/nn/modules/module.py", line 928, in _apply
+    module._apply(fn)
+  File "/home/lq/Projects_qin/run_SSAM/lib/python3.10/site-packages/torch/nn/modules/module.py", line 928, in _apply
+    module._apply(fn)
+  File "/home/lq/Projects_qin/run_SSAM/lib/python3.10/site-packages/torch/nn/modules/module.py", line 928, in _apply
+    module._apply(fn)
+  File "/home/lq/Projects_qin/run_SSAM/lib/python3.10/site-packages/torch/nn/modules/module.py", line 955, in _apply
+    param_applied = fn(param)
+  File "/home/lq/Projects_qin/run_SSAM/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1355, in convert
+    return t.to(
+  File "/home/lq/Projects_qin/run_SSAM/lib/python3.10/site-packages/torch/cuda/__init__.py", line 384, in _lazy_init
+    torch._C._cuda_init()
+RuntimeError: CUDA driver initialization failed, you might not have a CUDA gpu.
